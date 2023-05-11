@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+    <title>LoanPrediction</title>
+  </head>
+    <body>
+        <br>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+                <center><img src="{% static 'sign.jpg' %}" alt="My image" width="500" height="600"><center>
+               
+            </div>
+            
+            <div>
+            
+                <br>
+                
+
+                    <p class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">Sign Up<br>
+                    It’s quick and easy.</p>
+                    <br>
+                <form method="post">
+                    {% csrf_token %} 
+                    <div class="mb-6">
+                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name</label>
+                        {{form.username}} 
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
+                        {{form.email}}
+                    </div> 
+                    <div class="mb-6">
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        {{form.password1}} 
+    
+                    </div> 
+                    <div class="mb-6">
+                        <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                        {{form.password2}} 
+                    </div> 
+                    <button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Register</button>
+                </form>
+                        
+
+                    
+                {{form.errors}}
+                Already have an account?<a href="{% url 'landing' %}"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Login</a>
+
+            
+
+            </div>
+        </div>
+    </body>
+  </html>  
+ 
