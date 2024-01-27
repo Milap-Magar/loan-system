@@ -1,2 +1,2 @@
 # Loan-Eligibility-Prediction
-My first ML project.
+Project to classify whether you are eligible for loan or not.
