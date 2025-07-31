@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+    <title>loanPrediction</title>
+  </head>
+    <body>
+        <br>
+        <center><p class="text-6xl font-extrabold italic dark:text-white ">Loan Eligibility Prediction</p></center>
+        <br><br><br>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            
+            <div>
+                <br>
+               <center><img src="{% static 'landing.jpg' %}" alt="My image" width="500" height="600"><center>
+            </div>  
+            
+            <div>
+        
+                <br><br>
+
+                <form method="POST">
+                    {% csrf_token %} 
+                    
+                        <div  class="mb-6">
+                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name</label>
+                            <input type="text" id="first_name" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+                        </div>
+                        <div  class="mb-6">
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                            <input type="password" id="password" name="pass" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+                        </div> 
+                        
+                    
+        
+                    
+                    <button type="submit"  class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">LOGIN</button><br>
+                   
+                </form>
+                {% for message in messages %}
+                <p class="text-purple-600"> {{message}}</p>
+                {% endfor %}
+                Don't have an account?<a href="{% url 'signup' %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Sign up</a>
+        
+                
+            </div> 
+
+        </div>
+    </body>
+</head> 
+
+        

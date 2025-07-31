@@ -1,0 +1,29 @@
+{% extends "master.html" %}
+
+{% block title %}{{Home}}{% endblock %}
+
+{% block content %}
+        <br><br><br><br><br>
+      
+        
+        {% if result == 'eligible' %}
+        <figure class="max-w-screen-md mx-auto text-center">
+          <blockquote>
+              <p class="text-2xl italic font-medium text-gray-900 dark:text-white">Congratulations! Based on the analysis performed by the loan prediction model, you are <u>eligible</u> for a loan. You can proceed with the application process by contacting the lending institution or financial organization of your choice.</p>
+          </blockquote>
+        </figure>
+          
+        {% else %}
+        <figure class="max-w-screen-md mx-auto text-center">
+          <blockquote>
+              <p class="text-2xl italic font-medium text-gray-900 dark:text-white">We are sorry to inform you that based on the analysis performed by the loan prediction model, you are<u> not eligible</u> for a loan. This decision may be based on various factors, such as  income, or other relevant factors. We recommend improving your financial situation  before reapplying for a loan in the future.</p>
+          </blockquote>
+        </figure>
+        {% endif%}
+
+{% endblock %}
+
+      
+
+
+        
