@@ -7,80 +7,118 @@
 {% block content %}
 
 <br>
-<h4 class="text-2xl font-bold dark:text-white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exploratory Data Analysis:</h4>
+<h4 class="text-2xl font-bold dark:text-white">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exploratory Data Analysis:</h4>
 
 <br>
-<p class="text-center text-gray-500 dark:text-gray-400">Let’s check how many are defaulted on loan( Risk_Flag = 1 ) and how many paid.</p><br><br>
+<p class="text-center text-gray-500 dark:text-gray-400">Let’s check how many are defaulted on loan( Risk_Flag = 1 ) and
+    how many paid.</p><br><br>
 <img class="h-auto max-w-lg mx-auto" src="{% static '1_Dataset_Piechart.png' %}" alt="image description">
-<img class="h-auto max-w-lg mx-auto" src="{% static '2_Dataset_Bargraph.png' %}"  alt="image description">
+<img class="h-auto max-w-lg mx-auto" src="{% static '2_Dataset_Bargraph.png' %}" alt="image description">
 
 
-<<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">Income</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '3_Income_RiskFlag_Bargraph.png' %}" alt="3_Income RiskFlag Bargraph">
-<img class="h-auto max-w-lg mx-auto" src="{% static '4_Income_Factorplot.png' %}"  alt="4_Income Factorplot">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above, we can conclude that "category 0" has a<br> greater chance of defaulting on its loan. However, people with high incomes are<br> also not repaying their loans, raising the possibility of fraud.<br> There are also other factors we have to check before reaching this conclusion.</p>
+<<br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">Income</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '3_Income_RiskFlag_Bargraph.png' %}"
+        alt="3_Income RiskFlag Bargraph">
+    <img class="h-auto max-w-lg mx-auto" src="{% static '4_Income_Factorplot.png' %}" alt="4_Income Factorplot">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above, we can conclude that "category 0" has a<br>
+        greater chance of defaulting on its loan. However, people with high incomes are<br> also not repaying their
+        loans, raising the possibility of fraud.<br> There are also other factors we have to check before reaching this
+        conclusion.</p>
 
 
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">Age</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '5_Age_Factorplot.png' %}" alt="5_Age Factorplot">
-<img class="h-auto max-w-lg mx-auto" src="{% static '6_Age_RiskFlag_Catplot.png' %}"  alt="6_Age RiskFlag Catplot">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above graph, we can conclude that the age groups<br> in the lower category are more risky to give loans to.<br> And, also older people with high incomes seem risky, <br>which raises the possibility of corruption at a higher level.</p>
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">Age</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '5_Age_Factorplot.png' %}" alt="5_Age Factorplot">
+    <img class="h-auto max-w-lg mx-auto" src="{% static '6_Age_RiskFlag_Catplot.png' %}" alt="6_Age RiskFlag Catplot">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above graph, we can conclude that the age
+        groups<br> in the lower category are more risky to give loans to.<br> And, also older people with high incomes
+        seem risky, <br>which raises the possibility of corruption at a higher level.</p>
 
 
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">Marriage/Single</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '8_Married_Single_RiskFlag_Bargraph.png' %}" alt="8_Married Single RiskFlag Bargraph>
-<img class="h-auto max-w-lg mx-auto" src="{% static '9_Married_Single_Rate.png' %}"  alt="9_Married Single Rate">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above information, we can conclude that<br> single people have more chances of defaulting on a loan.</p>
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">Marriage/Single</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '8_Married_Single_RiskFlag_Bargraph.png' %}" alt="8_Married Single RiskFlag Bargraph>
+<img class=" h-auto max-w-lg mx-auto" src="{% static '9_Married_Single_Rate.png' %}" alt="9_Married Single Rate">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above information, we can conclude that<br> single
+        people have more chances of defaulting on a loan.</p>
 
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">House_Ownership</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '10_House_Ownership_Bargraph.png' %}" alt="10_House Ownership Bargraph">
-<img class="h-auto max-w-lg mx-auto" src="{% static '11_House_Ownership_Catplot.png' %}"  alt="11_House Ownership Catplot">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above bar graph and categorical plot,<br> people on rent tend to take more loans, and they are also highly likely to default.</p>
-
-
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">Car_Ownership</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '12_Car_Ownership_Bargraph.png' %}" alt="12_Car Ownership Bargraph">
-<p class="text-center text-gray-500 dark:text-gray-400">We can see that the number of people who do not<br> own a car is high, and they are also more likely to default on their loans.<br> Let's check for both car and house ownership to be clear.</p>
-<br><br><img class="h-auto max-w-lg mx-auto" src="{% static '13_Car_Ownership_Catplot.png' %}"  alt="13_Car Ownership Catplot">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above graph, we can conclude that rich people <br>who own both a car and a house are less likely to default, and vice versa. </p>
-
-
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">Profession</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '14_HO_CO_Riskflag_Catplot.png' %}"  alt="14_HO CO Riskflag Catplot">
-<img class="h-auto max-w-lg mx-auto" src="{% static '15_Profession_Countplot.png' %}" alt="15_Profession Countplot">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above information, physicians apply for loans more than other professions, <br>and police officers are the most likely to have defaulted on their loans.</p>
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">House_Ownership</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '10_House_Ownership_Bargraph.png' %}"
+        alt="10_House Ownership Bargraph">
+    <img class="h-auto max-w-lg mx-auto" src="{% static '11_House_Ownership_Catplot.png' %}"
+        alt="11_House Ownership Catplot">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above bar graph and categorical plot,<br> people on
+        rent tend to take more loans, and they are also highly likely to default.</p>
 
 
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">Car_Ownership</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '12_Car_Ownership_Bargraph.png' %}"
+        alt="12_Car Ownership Bargraph">
+    <p class="text-center text-gray-500 dark:text-gray-400">We can see that the number of people who do not<br> own a
+        car is high, and they are also more likely to default on their loans.<br> Let's check for both car and house
+        ownership to be clear.</p>
+    <br><br><img class="h-auto max-w-lg mx-auto" src="{% static '13_Car_Ownership_Catplot.png' %}"
+        alt="13_Car Ownership Catplot">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above graph, we can conclude that rich people
+        <br>who own both a car and a house are less likely to default, and vice versa. </p>
 
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">State/City</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '17_State_Rate.png' %}" alt="16_Profession Riskflag Crosstab">
-<img class="h-auto max-w-lg mx-auto" src="{% static '18_City_Rate.png' %}"  alt="18_City Rate">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above calculation and plot, we have concluded:
-    <br>Manipur State has the highest default rate of 20.59%.
-    <br>Bhubaneswar city has the highest default rate of 29.87%.
-    <br>But Bhubaneswar city lies in the state of Odisha, which has a default rate of only 13.95%.
+
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">Profession</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '14_HO_CO_Riskflag_Catplot.png' %}"
+        alt="14_HO CO Riskflag Catplot">
+    <img class="h-auto max-w-lg mx-auto" src="{% static '15_Profession_Countplot.png' %}" alt="15_Profession Countplot">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above information, physicians apply for loans more
+        than other professions, <br>and police officers are the most likely to have defaulted on their loans.</p>
+
+
+
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">State/City</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '17_State_Rate.png' %}" alt="16_Profession Riskflag Crosstab">
+    <img class="h-auto max-w-lg mx-auto" src="{% static '18_City_Rate.png' %}" alt="18_City Rate">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above calculation and plot, we have concluded:
+        <br>Manipur State has the highest default rate of 20.59%.
+        <br>Bhubaneswar city has the highest default rate of 29.87%.
+        <br>But Bhubaneswar city lies in the state of Odisha, which has a default rate of only 13.95%.
     </p>
 
 
 
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">Current Job Year</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '19_Current_Job_Year_CatpLot.png' %}"  alt="19_Current Job Year PLot">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above plot, we can say that when people just started working,<br> they were not able to pay their loan and defaulted, <br>but after a certain amount of time (3 years), many people were able to <br>pay their loan and the default rate decreased.</p>
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">Current Job Year</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '19_Current_Job_Year_CatpLot.png' %}"
+        alt="19_Current Job Year PLot">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above plot, we can say that when people just
+        started working,<br> they were not able to pay their loan and defaulted, <br>but after a certain amount of time
+        (3 years), many people were able to <br>pay their loan and the default rate decreased.</p>
 
 
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">Current House Year</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '20_Current_House_Year_CatPlot.png' %}" alt="20_Current House Year Plot">
-<p class="text-center text-gray-500 dark:text-gray-400">From the above graph, we can conclude that loans are only given to<br> those who have lived in the same residence for more than 10 years, <br>and the default rate decreases as the number of current house years decreases.</p>
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">Current House Year</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '20_Current_House_Year_CatPlot.png' %}"
+        alt="20_Current House Year Plot">
+    <p class="text-center text-gray-500 dark:text-gray-400">From the above graph, we can conclude that loans are only
+        given to<br> those who have lived in the same residence for more than 10 years, <br>and the default rate
+        decreases as the number of current house years decreases.</p>
 
-<br><br><br><h4 class="text-2xl text-center font-bold dark:text-white">Balancing our dataset</h4><br><br>
-<img class="h-auto max-w-lg mx-auto" src="{% static '21_Balanced_Data_Piechart.png' %}"  alt="21_Balanced Data Piechart">
-<img class="h-auto max-w-lg mx-auto" src="{% static '22_Balanced_Data_Bargraph.png' %}"  alt="22_Balanced_Data_Bargraph">
-<p class="text-center text-gray-500 dark:text-gray-400">Although our data is not balanced, we can work on it better than the previous dataset.</p>
+    <br><br><br>
+    <h4 class="text-2xl text-center font-bold dark:text-white">Balancing our dataset</h4><br><br>
+    <img class="h-auto max-w-lg mx-auto" src="{% static '21_Balanced_Data_Piechart.png' %}"
+        alt="21_Balanced Data Piechart">
+    <img class="h-auto max-w-lg mx-auto" src="{% static '22_Balanced_Data_Bargraph.png' %}"
+        alt="22_Balanced_Data_Bargraph">
+    <p class="text-center text-gray-500 dark:text-gray-400">Although our data is not balanced, we can work on it better
+        than the previous dataset.</p>
 
-<br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br>
 
 
 
 
 
-{% endblock %}
+    {% endblock %}

@@ -1,474 +1,457 @@
 {% extends "master.html" %}
 
-{% block title %}{{Home}}{% endblock %}
+{% block title %}Loan Prediction{% endblock %}
 
 {% block content %}
-<br>
-
-<form action="result" method="GET">
-    {% csrf_token %} 
-    <center>
-    <div class="grid gap-6 mb-6 md:grid-cols-2">
-        <div>
-            <label for="martial" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Marital Status:</label>
-            <select id="martial" name="martial" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="single">single</option>
-                <option value="married">married</option>
-            </select>
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Loan Eligibility Prediction</h1>
+            <p class="text-gray-600">Fill in your details to get an instant loan eligibility assessment</p>
         </div>
 
-        <div>
-            <label for="house_O" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">House Ownership:</label>
-            <select id="house_O" name="house_O" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="owned">owned</option>
-                <option value="rented">rented</option>
-                <option value="norent_noown">norent_noown</option>
-            </select>
-        </div>
-        <div>
-            <label for="car_O" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Car Ownership:</label>
-            <select id="car_O" name="car_O" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="yes">yes</option>
-                <option value="no">no</option>
-            </select>
-        </div>  
-        <div>
-            <label for="profession" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profession:</label>
-            <select  id="profession" name="profession" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-   				<option value="Air_traffic_controller">Air_traffic_controller</option>
-   				<option value="Analyst">Analyst</option>
-    			<option value="Architect">Architect</option>
-   				<option value="Army_officer">Army officer</option>
-   				<option value="Artist">Artist</option>
-   				<option value="Aviator">Aviator</option>
-    			<option value="Biomedical_Engineer">Biomedical_Engineer</option>
-    			<option value="Chartered_Accountant">Chartered_Accountant</option>
-    			<option value="Chef">Chef</option>
-    			<option value="Chemical_engineer">Chemical_engineer</option>
-    			<option value="Civil_engineer">Civil_engineer</option>
-   				<option value="Civil_servant">Civil_servant</option>
-    			<option value="Comedian">Comedian</option>
-    			<option value="Computer_hardware_engineer">Computer_hardware_engineer</option>
-    			<option value="Computer_operator">Computer_operator</option>
-   				<option value="Consultant">Consultant</option>
-   				<option value="Dentist">Dentist</option>
-    			<option value="Design_Engineer">Design_Engineer</option>
-    			<option value="Designer">Designer</option>
-    			<option value="Drafter">Drafter</option>
-   				<option value="Economist">Economist</option>
-    			<option value="Engineer">Engineer</option>
-    			<option value="Fashion_Designer">Fashion_Designer</option>
-   				<option value="Financial_Analyst">Financial_Analyst</option>
-   				<option value="Firefighter">Firefighter</option>
-				<option value="Flight_attendant">Flight_attendant</option>
-				<option value="Geologist">Geologist</option>
-				<option value="Graphic_Designer">Graphic_Designer</option>
-				<option value="Hotel_Manager">Hotel_Manager</option>
-				<option value="Industrial_Engineer">Industrial_Engineer</option>
-				<option value="Lawyer">Lawyer</option>
-				<option value="Librarian">Librarian</option>
-				<option value="Magistrate">Magistrate</option>
-				<option value="Mechanical_engineer">Mechanical_engineer</option>
-				<option value="Microbiologist">Microbiologist</option>
-				<option value="Official">Official</option>
-				<option value="Petroleum_Engineer">Petroleum_Engineer</option>
-				<option value="Physician">Physician</option>
-				<option value="Police_officer">Police_officer</option>
-				<option value="Politician">Politician</option>
-				<option value="Psychologist">Psychologist</option>
-				<option value="Scientist">Scientist</option>
-				<option value="Secretary">Secretary</option>
-				<option value="Software_Developer">Software_Developer</option>
-				<option value="Statistician">Statistician</option>
-				<option value="Surgeon">Surgeon</option>
-				<option value="Surveyor">Surveyor</option>
-				<option value="Technical_writer">Technical_writer</option>
-				<option value="Technician">Technician</option>
-				<option value="Technology_specialist">Technology_specialist</option>
-				<option value="Web_designer">Web_designer</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City:</label>
-            <select id="city" name="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rewa" required>
-                <option value="Adoni">Adoni</option>
-				<option value="Agartala">Agartala</option>
-				<option value="Agra">Agra</option>
-				<option value="Ahmedabad">Ahmedabad</option>
-				<option value="Ahmednagar">Ahmednagar</option>
-				<option value="Aizawl">Aizawl</option>
-				<option value="Ajmer">Ajmer</option>
-				<option value="Akola">Akola</option>
-				<option value="Alappuzha">Alappuzha</option>
-				<option value="Aligarh">Aligarh</option>
-				<option value="Allahabad">Allahabad</option>
-				<option value="Alwar">Alwar</option>
-				<option value="Amaravati">Amaravati</option>
-				<option value="Ambala">Ambala</option>
-				<option value="Ambarnath">Ambarnath</option>
-				<option value="Ambattur">Ambattur</option>
-				<option value="Amravati">Amravati</option>
-				<option value="Amritsar">Amritsar</option>
-				<option value="Amroha">Amroha</option>
-				<option value="Anand">Anand</option>
-				<option value="Anantapur">Anantapur</option>
-				<option value="Anantapuram[24]">Anantapuram[24]</option>
-				<option value="Arrah">Arrah</option>
-				<option value="Asansol">Asansol</option>
-				<option value="Aurangabad">Aurangabad</option>
-				<option value="Aurangabad[39]">Aurangabad[39]</option>
-				<option value="Avadi">Avadi</option>
-				<option value="Bahraich">Bahraich</option>
-				<option value="Ballia">Ballia</option>
-				<option value="Bally">Bally</option>
-				<option value="Bangalore">Bangalore</option>
-				<option value="Baranagar">Baranagar</option>
-				<option value="Barasat">Barasat</option>
-				<option value="Bardhaman">Bardhaman</option>
-				<option value="Bareilly">Bareilly</option>
-				<option value="Bathinda">Bathinda</option>
-				<option value="Begusarai">Begusarai</option>
-				<option value="Belgaum">Belgaum</option>
-				<option value="Bellary">Bellary</option>
-				<option value="Berhampore">Berhampore</option>
-				<option value="Berhampur">Berhampur</option>
-				<option value="Bettiah[33]">Bettiah[33]</option>
-				<option value="Bhagalpur">Bhagalpur</option>
-				<option value="Bhalswa_Jahangir_Pur">Bhalswa_Jahangir_Pur</option>
-				<option value="Bharatpur">Bharatpur</option>
-				<option value="Bhatpara">Bhatpara</option>
-				<option value="Bhavnagar">Bhavnagar</option>
-				<option value="Bhilai">Bhilai</option>
-				<option value="Bhilwara">Bhilwara</option>
-				<option value="Bhimavaram">Bhimavaram</option>
-				<option value="Bhind">Bhind</option>
-				<option value="Bhiwandi">Bhiwandi</option>
-				<option value="Bhiwani">Bhiwani</option>
-				<option value="Bhopal">Bhopal</option>
-				<option value="Bhubaneswar">Bhubaneswar</option>
-				<option value="Bhusawal">Bhusawal</option>
-				<option value="Bidar">Bidar</option>
-				<option value="Bidhannagar">Bidhannagar</option>
-				<option value="Bihar_Sharif">Bihar_Sharif</option>
-				<option value="Bijapur">Bijapur</option>
-				<option value="Bikaner">Bikaner</option>
-				<option value="Bilaspur">Bilaspur</option>
-				<option value="Bokaro">Bokaro</option>
-				<option value="Bongaigaon">Bongaigaon</option>
-				<option value="Bulandshahr">Bulandshahr</option>
-				<option value="Burhanpur">Burhanpur</option>
-				<option value="Buxar[37]">Buxar[37]</option>
-				<option value="Chandigarh_city">Chandigarh_city</option>
-				<option value="Chandrapur">Chandrapur</option>
-				<option value="Chapra">Chapra</option>
-				<option value="Chennai">Chennai</option>
-				<option value="Chinsurah">Chinsurah</option>
-				<option value="Chittoor[28]">Chittoor[28]</option>
-				<option value="Coimbatore">Coimbatore</option>
-				<option value="Cuttack">Cuttack</option>
-				<option value="Danapur">Danapur</option>
-				<option value="Darbhanga">Darbhanga</option>
-				<option value="Davanagere">Davanagere</option>
-				<option value="Dehradun">Dehradun</option>
-				<option value="Dehri[30]">Dehri[30]</option>
-				<option value="Delhi_city">Delhi_city</option>
-				<option value="Deoghar">Deoghar</option>
-				<option value="Dewas">Dewas</option>
-				<option value="Dhanbad">Dhanbad</option>
-				<option value="Dharmavaram">Dharmavaram</option>
-				<option value="Dhule">Dhule</option>
-				<option value="Dibrugarh">Dibrugarh</option>
-				<option value="Dindigul">Dindigul</option>
-				<option value="Durg">Durg</option>
-				<option value="Durgapur">Durgapur</option>
-				<option value="Eluru[25]">Eluru[25]</option>
-				<option value="Erode[17]">Erode[17]</option>
-				<option value="Etawah">Etawah</option>
-				<option value="Faridabad">Faridabad</option>
-				<option value="Farrukhabad">Farrukhabad</option>
-				<option value="Fatehpur">Fatehpur</option>
-				<option value="Firozabad">Firozabad</option>
-				<option value="Gandhidham">Gandhidham</option>
-				<option value="Gandhinagar">Gandhinagar</option>
-				<option value="Gangtok">Gangtok</option>
-				<option value="Gaya">Gaya</option>
-				<option value="Ghaziabad">Ghaziabad</option>
-				<option value="Giridih">Giridih</option>
-				<option value="Gopalpur">Gopalpur</option>
-				<option value="Gorakhpur">Gorakhpur</option>
-				<option value="Gudivada">Gudivada</option>
-				<option value="Gulbarga">Gulbarga</option>
-				<option value="Guna">Guna</option>
-				<option value="Guntakal">Guntakal</option>
-				<option value="Guntur">Guntur</option>
-				<option value="Gurgaon">Gurgaon</option>
-				<option value="Guwahati">Guwahati</option>
-				<option value="Gwalior">Gwalior</option>
-				<option value="Hajipur">Hajipur</option>
-				<option value="Haldia">Haldia</option>
-				<option value="Hapur">Hapur</option>
-				<option value="Haridwar">Haridwar</option>
-				<option value="Hazaribagh">Hazaribagh</option>
-				<option value="Hindupur">Hindupur</option>
-				<option value="Hospet">Hospet</option>
-				<option value="Hosur">Hosur</option>
-				<option value="Howrah">Howrah</option>
-				<option value="Hubli-Dharwad">Hubli-Dharwad</option>
-				<option value="Hyderabad">Hyderabad</option>
-				<option value="Ichalkaranji">Ichalkaranji</option>
-				<option value="Imphal">Imphal</option>
-				<option value="Indore">Indore</option>
-				<option value="Jabalpur">Jabalpur</option>
-				<option value="Jaipur">Jaipur</option>
-				<option value="Jalandhar">Jalandhar</option>
-				<option value="Jalgaon">Jalgaon</option>
-				<option value="Jalna">Jalna</option>
-				<option value="Jamalpur[36]">Jamalpur</option>
-				<option value="Jammu[16]">Jammu</option>
-				<option value="Jamnagar">Jamnagar</option>
-				<option value="Jamshedpur">Jamshedpur</option>
-				<option value="Jaunpur">Jaunpur</option>
-				<option value="Jehanabad[38]">Jehanabad</option>
-				<option value="Jhansi">Jhansi</option>
-				<option value="Jodhpur">Jodhpur</option>
-				<option value="Jorhat">Jorhat</option>
-				<option value="Junagadh">Junagadh</option>
-				<option value="Kadapa[23]">Kadapa</option>
-				<option value="Kakinada">Kakinada</option>
-				<option value="Kalyan-Dombivli">Kalyan-Dombivli</option>
-				<option value="Kamarhati">Kamarhati</option>
-				<option value="Kanpur">Kanpur</option>
-				<option value="Karaikudi">Karaikudi</option>
-				<option value="Karawal_Nagar">Karawal Nagar</option>
-				<option value="Karimnagar">Karimnagar</option>
-				<option value="Karnal">Karnal</option>
-				<option value="Katihar">Katihar</option>
-				<option value="Katni">Katni</option>
-				<option value="Kavali">Kavali</option>
-				<option value="Khammam">Khammam</option>
-				<option value="Khandwa">Khandwa</option>
-				<option value="Kharagpur">Kharagpur</option>
-				<option value="Khora,_Ghaziabad">Khora, Ghaziabad</option>
-				<option value="Kirari_Suleman_Nagar">Kirari Suleman Nagar</option>
-				<option value="Kishanganj[35]">Kishanganj</option>
-				<option value="Kochi">Kochi</option>
-				<option value="Kolhapur">Kolhapur</option>
-				<option value="Kolkata">Kolkata</option>
-				<option value="Kollam">Kollam</option>
-				<option value="Korba">Korba</option>
-				<option value="Kota[6]">Kota</option>
-				<option value="Kottayam">Kottayam</option>
-				<option value="Kozhikode">Kozhikode</option>
-				<option value="Kulti">Kulti</option>
-				<option value="Kumbakonam">Kumbakonam</option>
-				<option value="Kurnool[18]">Kurnool</option>
-				<option value="Latur">Latur</option>
-				<option value="Loni">Loni</option>
-				<option value="Lucknow">Lucknow</option>
-				<option value="Ludhiana">Ludhiana</option>
-				<option value="Machilipatnam">Machilipatnam</option>
-				<option value="Madanapalle">Madanapalle</option>
-				<option value="Madhyamgram">Madhyamgram</option>
-				<option value="Madurai">Madurai</option>
-				<option value="Mahbubnagar">Mahbubnagar</option>
-				<option value="Maheshtala">Maheshtala</option>
-				<option value="Malda">Malda</option>
-				<option value="Malegaon">Malegaon</option>
-				<option value="Mangalore">Mangalore</option>
-				<option value="Mango">Mango</option>
-				<option value="Mathura">Mathura</option>
-				<option value="Mau">Mau</option>
-				<option value="Medininagar">Medininagar</option>
-				<option value="Meerut">Meerut</option>
-				<option value="Mehsana">Mehsana</option>
-				<option value="Mira-Bhayandar">Mira-Bhayandar</option>
-				<option value="Miryalaguda">Miryalaguda</option>
-				<option value="Mirzapur">Mirzapur</option>
-				<option value="Moradabad">Moradabad</option>
-				<option value="Morbi">Morbi</option>
-				<option value="Morena">Morena</option>
-				<option value="Motihari">Motihari</option>
-				<option value="Mumbai">Mumbai</option>
-				<option value="Munger">Munger</option>
-				<option value="Muzaffarnagar">Muzaffarnagar</option>
-				<option value="Muzaffarpur">Muzaffarpur</option>
-				<option value="Mysore">Mysore</option>
-				<option value="Nadiad">Nadiad</option>
-				<option value="Nagaon">Nagaon</option>
-				<option value="Nagercoil">Nagercoil</option>
-				<option value="Nagpur">Nagpur</option>
-				<option value="Naihati">Naihati</option>
-				<option value="Nanded">Nanded</option>
-				<option value="Nandyal">Nandyal</option>
-				<option value="Nangloi_Jat">Nangloi Jat</option>
-				<option value="Narasaraopet">Narasaraopet</option>
-				<option value="Nashik">Nashik</option>
-				<option value="Navi_Mumbai">Navi Mumbai</option>
-				<option value="Nellore">Nellore</option>
-				<option value="New_Delhi">New Delhi</option>
-				<option value="Nizamabad">Nizamabad</option>
-				<option value="Noida">Noida</option>
-				<option value="North_Dumdum">North Dumdum</option>
-				<option value="Ongole">Ongole</option>
-				<option value="Orai">Orai</option>
-				<option value="Ozhukarai">Ozhukarai</option>
-				<option value="Pali">Pali</option>
-				<option value="Pallavaram">Pallavaram</option>
-				<option value="Panchkula">Panchkula</option>
-				<option value="Panihati">Panihati</option>
-				<option value="Panipat">Panipat</option>
-				<option value="Panvel">Panvel</option>
-				<option value="Parbhani">Parbhani</option>
-				<option value="Patiala">Patiala</option>
-				<option value="Patna">Patna</option>
-				<option value="Phagwara">Phagwara</option>
-				<option value="Phusro">Phusro</option>
-				<option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
-				<option value="Pondicherry">Pondicherry</option>
-				<option value="Proddatur">Proddatur</option>
-				<option value="Pudukkottai">Pudukkottai</option>
-				<option value="Pune">Pune</option>
-				<option value="Purnia">Purnia</option>
-				<option value="Raebareli">Raebareli</option>
-				<option value="Raichur">Raichur</option>
-				<option value="Raiganj">Raiganj</option>
-				<option value="Raipur">Raipur</option>
-				<option value="Rajahmundry">Rajahmundry</option>
-				<option value="Rajkot">Rajkot</option>
-				<option value="Rajpur_Sonarpur">Rajpur_Sonarpur</option>
-				<option value="Ramagundam">Ramagundam</option>
-				<option value="Ramgarh">Ramgarh</option>
-				<option value="Rampur">Rampur</option>
-				<option value="Ranchi">Ranchi</option>
-				<option value="Ratlam">Ratlam</option>
-				<option value="Raurkela_Industrial_Township">Raurkela_Industrial_Township</option>
-				<option value="Rewa">Rewa</option>
-				<option value="Rohtak">Rohtak</option>
-				<option value="Rourkela">Rourkela</option>
-				<option value="Sagar">Sagar</option>
-				<option value="Saharanpur">Saharanpur</option>
-				<option value="Saharsa[29]">Saharsa[29]</option>
-				<option value="Salem">Salem</option>
-				<option value="Sambalpur">Sambalpur</option>
-				<option value="Sambhal">Sambhal</option>
-				<option value="Sangli-Miraj_&_Kupwad">Sangli-Miraj_&_Kupwad</option>
-				<option value="Sasaram[30]">Sasaram[30]</option>
-				<option value="Satara">Satara</option>
-				<option value="Satna">Satna</option>
-				<option value="Secunderabad">Secunderabad</option>
-				<option value="Serampore">Serampore</option>
-				<option value="Shahjahanpur">Shahjahanpur</option>
-				<option value="Shimla">Shimla</option>
-				<option value="Shimoga">Shimoga</option>
-				<option value="Shivpuri">Shivpuri</option>
-				<option value="Sikar">Sikar</option>
-				<option value="Silchar">Silchar</option>
-				<option value="Siliguri">Siliguri</option>
-				<option value="Singrauli">Singrauli</option>
-				<option value="Sirsa">Sirsa</option>
-				<option value="Siwan[32]">Siwan[32]</option>
-				<option value="Solapur">Solapur</option>
-				<option value="Sonipat">Sonipat</option>
-				<option value="South_Dumdum">South_Dumdum</option>
-				<option value="Sri_Ganganagar">Sri_Ganganagar</option>
-				<option value="Srikakulam">Srikakulam</option>
-				<option value="Srinagar">Srinagar</option>
-				<option value="Sultan_Pur_Majra">Sultan_Pur_Majra</option>
-				<option value="Surat">Surat</option>
-				<option value="Surendranagar_Dudhrej">Surendranagar_Dudhrej</option>
-				<option value="Suryapet">Suryapet</option>
-				<option value="Tadepalligudem">Tadepalligudem</option>
-				<option value="">Select a city</option>
-				<option value="Tadipatri">Tadipatri</option>
-				<option value="Tenali">Tenali</option>
-				<option value="Tezpur">Tezpur</option>
-				<option value="Thane">Thane</option>
-				<option value="Thanjavur">Thanjavur</option>
-				<option value="Thiruvananthapuram">Thiruvananthapuram</option>
-				<option value="Thoothukudi">Thoothukudi</option>
-				<option value="Thrissur">Thrissur</option>
-				<option value="Tinsukia">Tinsukia</option>
-				<option value="Tiruchirappalli[10]">Tiruchirappalli[10]</option>
-				<option value="Tirunelveli">Tirunelveli</option>
-				<option value="Tirupati[21][22]">Tirupati[21][22]</option>
-				<option value="Tiruppur">Tiruppur</option>
-				<option value="Tiruvottiyur">Tiruvottiyur</option>
-				<option value="Tumkur">Tumkur</option>
-				<option value="Udaipur">Udaipur</option>
-				<option value="Udupi">Udupi</option>
-				<option value="Ujjain">Ujjain</option>
-				<option value="Ulhasnagar">Ulhasnagar</option>
-				<option value="Uluberia">Uluberia</option>
-				<option value="Unnao">Unnao</option>
-				<option value="Vadodara">Vadodara</option>
-				<option value="Varanasi">Varanasi</option>
-				<option value="Vasai-Virar">Vasai-Virar</option>
-				<option value="Vellore">Vellore</option>
-				<option value="Vijayanagaram">Vijayanagaram</option>
-				<option value="Vijayawada">Vijayawada</option>
-				<option value="Visakhapatnam[4]">Visakhapatnam[4]</option>
-				<option value="Warangal[11][12]">Warangal[11][12]</option>
-				<option value="Yamunanagar">Yamunanagar</option>
-            </select>
+        <!-- Prediction Form -->
+        <div class="bg-white rounded-lg shadow-xl p-8">
+            <form action="{% url 'result' %}" method="POST" id="predictionForm">
+                {% csrf_token %}
+                
+                <!-- Personal Information -->
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Personal Information
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="marital" class="block text-sm font-medium text-gray-700 mb-2">Marital Status</label>
+                            <select id="marital" name="marital" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select marital status</option>
+                                <option value="single">Single</option>
+                                <option value="married">Married</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="age" class="block text-sm font-medium text-gray-700 mb-2">Age</label>
+                            <input type="number" id="age" name="age" min="18" max="100" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Enter your age">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Information -->
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                        </svg>
+                        Financial Information
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="income" class="block text-sm font-medium text-gray-700 mb-2">Annual Income (₹)</label>
+                            <input type="number" id="income" name="income" min="100000" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Enter annual income">
+                        </div>
+
+                        <div>
+                            <label for="profession" class="block text-sm font-medium text-gray-700 mb-2">Profession</label>
+                            <select id="profession" name="profession" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select profession</option>
+                                <option value="Air_traffic_controller">Air Traffic Controller</option>
+                                <option value="Analyst">Analyst</option>
+                                <option value="Architect">Architect</option>
+                                <option value="Army_officer">Army Officer</option>
+                                <option value="Artist">Artist</option>
+                                <option value="Aviator">Aviator</option>
+                                <option value="Biomedical_Engineer">Biomedical Engineer</option>
+                                <option value="Chartered_Accountant">Chartered Accountant</option>
+                                <option value="Chef">Chef</option>
+                                <option value="Chemical_engineer">Chemical Engineer</option>
+                                <option value="Civil_engineer">Civil Engineer</option>
+                                <option value="Civil_servant">Civil Servant</option>
+                                <option value="Comedian">Comedian</option>
+                                <option value="Computer_hardware_engineer">Computer Hardware Engineer</option>
+                                <option value="Computer_operator">Computer Operator</option>
+                                <option value="Consultant">Consultant</option>
+                                <option value="Dentist">Dentist</option>
+                                <option value="Design_Engineer">Design Engineer</option>
+                                <option value="Designer">Designer</option>
+                                <option value="Drafter">Drafter</option>
+                                <option value="Economist">Economist</option>
+                                <option value="Engineer">Engineer</option>
+                                <option value="Fashion_Designer">Fashion Designer</option>
+                                <option value="Financial_Analyst">Financial Analyst</option>
+                                <option value="Firefighter">Firefighter</option>
+                                <option value="Flight_attendant">Flight Attendant</option>
+                                <option value="Geologist">Geologist</option>
+                                <option value="Graphic_Designer">Graphic Designer</option>
+                                <option value="Hotel_Manager">Hotel Manager</option>
+                                <option value="Industrial_Engineer">Industrial Engineer</option>
+                                <option value="Lawyer">Lawyer</option>
+                                <option value="Librarian">Librarian</option>
+                                <option value="Magistrate">Magistrate</option>
+                                <option value="Mechanical_engineer">Mechanical Engineer</option>
+                                <option value="Microbiologist">Microbiologist</option>
+                                <option value="Official">Official</option>
+                                <option value="Petroleum_Engineer">Petroleum Engineer</option>
+                                <option value="Physician">Physician</option>
+                                <option value="Police_officer">Police Officer</option>
+                                <option value="Politician">Politician</option>
+                                <option value="Psychologist">Psychologist</option>
+                                <option value="Scientist">Scientist</option>
+                                <option value="Secretary">Secretary</option>
+                                <option value="Software_Developer">Software Developer</option>
+                                <option value="Statistician">Statistician</option>
+                                <option value="Surgeon">Surgeon</option>
+                                <option value="Surveyor">Surveyor</option>
+                                <option value="Technical_writer">Technical Writer</option>
+                                <option value="Technician">Technician</option>
+                                <option value="Technology_specialist">Technology Specialist</option>
+                                <option value="Web_designer">Web Designer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Information -->
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                        Property Information
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="house_O" class="block text-sm font-medium text-gray-700 mb-2">House Ownership</label>
+                            <select id="house_O" name="house_O" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select house ownership</option>
+                                <option value="owned">Owned</option>
+                                <option value="rented">Rented</option>
+                                <option value="norent_noown">No Rent No Own</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="car_O" class="block text-sm font-medium text-gray-700 mb-2">Car Ownership</label>
+                            <select id="car_O" name="car_O" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select car ownership</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Information -->
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Location Information
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="city" class="block text-sm font-medium text-gray-700 mb-2">City</label>
+                            <select id="city" name="city" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select a city</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Chennai">Chennai</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Pune">Pune</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Jaipur">Jaipur</option>
+                                <option value="Lucknow">Lucknow</option>
+                                <option value="Kanpur">Kanpur</option>
+                                <option value="Nagpur">Nagpur</option>
+                                <option value="Indore">Indore</option>
+                                <option value="Thane">Thane</option>
+                                <option value="Bhopal">Bhopal</option>
+                                <option value="Visakhapatnam">Visakhapatnam</option>
+                                <option value="Pimpri-Chinchwad">Pimpri-Chinchwad</option>
+                                <option value="Patna">Patna</option>
+                                <option value="Vadodara">Vadodara</option>
+                                <option value="Ghaziabad">Ghaziabad</option>
+                                <option value="Ludhiana">Ludhiana</option>
+                                <option value="Agra">Agra</option>
+                                <option value="Nashik">Nashik</option>
+                                <option value="Faridabad">Faridabad</option>
+                                <option value="Meerut">Meerut</option>
+                                <option value="Rajkot">Rajkot</option>
+                                <option value="Kalyan-Dombivli">Kalyan-Dombivli</option>
+                                <option value="Vasai-Virar">Vasai-Virar</option>
+                                <option value="Varanasi">Varanasi</option>
+                                <option value="Srinagar">Srinagar</option>
+                                <option value="Aurangabad">Aurangabad</option>
+                                <option value="Dhanbad">Dhanbad</option>
+                                <option value="Amritsar">Amritsar</option>
+                                <option value="Allahabad">Allahabad</option>
+                                <option value="Ranchi">Ranchi</option>
+                                <option value="Howrah">Howrah</option>
+                                <option value="Coimbatore">Coimbatore</option>
+                                <option value="Jabalpur">Jabalpur</option>
+                                <option value="Gwalior">Gwalior</option>
+                                <option value="Vijayawada">Vijayawada</option>
+                                <option value="Jodhpur">Jodhpur</option>
+                                <option value="Madurai">Madurai</option>
+                                <option value="Raipur">Raipur</option>
+                                <option value="Kota">Kota</option>
+                                <option value="Guwahati">Guwahati</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Solapur">Solapur</option>
+                                <option value="Hubli-Dharwad">Hubli-Dharwad</option>
+                                <option value="Mysore">Mysore</option>
+                                <option value="Tiruchirappalli">Tiruchirappalli</option>
+                                <option value="Bareilly">Bareilly</option>
+                                <option value="Aligarh">Aligarh</option>
+                                <option value="Tiruppur">Tiruppur</option>
+                                <option value="Gurgaon">Gurgaon</option>
+                                <option value="Moradabad">Moradabad</option>
+                                <option value="Jalandhar">Jalandhar</option>
+                                <option value="Bhubaneswar">Bhubaneswar</option>
+                                <option value="Salem">Salem</option>
+                                <option value="Warangal">Warangal</option>
+                                <option value="Guntur">Guntur</option>
+                                <option value="Bhiwandi">Bhiwandi</option>
+                                <option value="Saharanpur">Saharanpur</option>
+                                <option value="Gorakhpur">Gorakhpur</option>
+                                <option value="Bikaner">Bikaner</option>
+                                <option value="Amravati">Amravati</option>
+                                <option value="Noida">Noida</option>
+                                <option value="Jamshedpur">Jamshedpur</option>
+                                <option value="Bhilai">Bhilai</option>
+                                <option value="Cuttack">Cuttack</option>
+                                <option value="Firozabad">Firozabad</option>
+                                <option value="Kochi">Kochi</option>
+                                <option value="Nellore">Nellore</option>
+                                <option value="Bhavnagar">Bhavnagar</option>
+                                <option value="Dehradun">Dehradun</option>
+                                <option value="Durgapur">Durgapur</option>
+                                <option value="Asansol">Asansol</option>
+                                <option value="Rourkela">Rourkela</option>
+                                <option value="Nanded">Nanded</option>
+                                <option value="Kolhapur">Kolhapur</option>
+                                <option value="Ajmer">Ajmer</option>
+                                <option value="Akola">Akola</option>
+                                <option value="Gulbarga">Gulbarga</option>
+                                <option value="Jamnagar">Jamnagar</option>
+                                <option value="Ujjain">Ujjain</option>
+                                <option value="Loni">Loni</option>
+                                <option value="Siliguri">Siliguri</option>
+                                <option value="Jhansi">Jhansi</option>
+                                <option value="Ulhasnagar">Ulhasnagar</option>
+                                <option value="Jammu">Jammu</option>
+                                <option value="Sangli-Miraj_&_Kupwad">Sangli-Miraj & Kupwad</option>
+                                <option value="Mangalore">Mangalore</option>
+                                <option value="Erode">Erode</option>
+                                <option value="Belgaum">Belgaum</option>
+                                <option value="Ambattur">Ambattur</option>
+                                <option value="Tirunelveli">Tirunelveli</option>
+                                <option value="Malegaon">Malegaon</option>
+                                <option value="Gaya">Gaya</option>
+                                <option value="Jalgaon">Jalgaon</option>
+                                <option value="Udaipur">Udaipur</option>
+                                <option value="Maheshtala">Maheshtala</option>
+                                <option value="Tirupati">Tirupati</option>
+                                <option value="Karnal">Karnal</option>
+                                <option value="Bathinda">Bathinda</option>
+                                <option value="Rampur">Rampur</option>
+                                <option value="Shivamogga">Shivamogga</option>
+                                <option value="Ratlam">Ratlam</option>
+                                <option value="Modinagar">Modinagar</option>
+                                <option value="Durg">Durg</option>
+                                <option value="Shillong">Shillong</option>
+                                <option value="Imphal">Imphal</option>
+                                <option value="Hapur">Hapur</option>
+                                <option value="Anantapur">Anantapur</option>
+                                <option value="Arrah">Arrah</option>
+                                <option value="Karimnagar">Karimnagar</option>
+                                <option value="Parbhani">Parbhani</option>
+                                <option value="Etawah">Etawah</option>
+                                <option value="Bharatpur">Bharatpur</option>
+                                <option value="Begusarai">Begusarai</option>
+                                <option value="New_Delhi">New Delhi</option>
+                                <option value="Chandigarh_city">Chandigarh City</option>
+                                <option value="Delhi_city">Delhi City</option>
+                                <option value="Gangtok">Gangtok</option>
+                                <option value="Shimla">Shimla</option>
+                                <option value="Panaji">Panaji</option>
+                                <option value="Agartala">Agartala</option>
+                                <option value="Aizawl">Aizawl</option>
+                                <option value="Kohima">Kohima</option>
+                                <option value="Itanagar">Itanagar</option>
+                                <option value="Dispur">Dispur</option>
+                                <option value="Port_Blair">Port Blair</option>
+                                <option value="Kavaratti">Kavaratti</option>
+                                <option value="Daman">Daman</option>
+                                <option value="Silvassa">Silvassa</option>
+                                <option value="Pondicherry">Pondicherry</option>
+                                <option value="Karaikal">Karaikal</option>
+                                <option value="Mahe">Mahe</option>
+                                <option value="Yanam">Yanam</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="state" class="block text-sm font-medium text-gray-700 mb-2">State</label>
+                            <select id="state" name="state" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select a state</option>
+                                <option value="Andhra_Pradesh">Andhra Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal_Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu_and_Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya_Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil_Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar_Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West_Bengal">West Bengal</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Information -->
+                <div class="mb-8">
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                        </svg>
+                        Experience Information
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="current_jy" class="block text-sm font-medium text-gray-700 mb-2">Years of Experience in Current Job</label>
+                            <input type="number" id="current_jy" name="current_jy" min="0" max="50" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Enter years of experience">
+                        </div>
+
+                        <div>
+                            <label for="current_hy" class="block text-sm font-medium text-gray-700 mb-2">Years at Current Residence</label>
+                            <input type="number" id="current_hy" name="current_hy" min="0" max="50" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                placeholder="Enter years at current residence">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        Get Prediction
+                    </button>
+                </div>
+            </form>
         </div>
 
-        <div>
-            <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">State:</label>
-            <select id="state" name="state" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-				<option value="Andhra_Pradesh">Andhra_Pradesh</option>
-				<option value="Assam">Assam</option>
-				<option value="Bihar">Bihar</option>
-				<option value="Chandigarh">Chandigarh</option>
-				<option value="Chhattisgarh">Chhattisgarh</option>
-				<option value="Delhi">Delhi</option>
-				<option value="Gujarat">Gujarat</option>
-				<option value="Haryana">Haryana</option>
-				<option value="Himachal_Pradesh">Himachal_Pradesh</option>
-				<option value="Jammu_and_Kashmir">Jammu_and_Kashmir</option>
-				<option value="Jharkhand">Jharkhand</option>
-				<option value="Karnataka">Karnataka</option>
-				<option value="Kerala">Kerala</option>
-				<option value="Madhya_Pradesh">Madhya_Pradesh</option>
-				<option value="Maharashtra">Maharashtra</option>
-				<option value="Manipur">Manipur</option>
-				<option value="Mizoram">Mizoram</option>
-				<option value="Odisha">Odisha</option>
-				<option value="Puducherry">Puducherry</option>
-				<option value="Punjab">Punjab</option>
-				<option value="Rajasthan">Rajasthan</option>
-				<option value="Sikkim">Sikkim</option>
-				<option value="Tamil_Nadu">Tamil_Nadu</option>
-				<option value="Telangana">Telangana</option>
-				<option value="Tripura">Tripura</option>
-				<option value="Uttar_Pradesh">Uttar_Pradesh</option>
-				<option value="Uttar_Pradesh[5]">Uttar_Pradesh[5]</option>
-				<option value="Uttarakhand">Uttarakhand</option>
-				<option value="West_Bengal">West_Bengal</option>
-            </select>	
-        </div>
-        
-        <div>
-            <label for="current_jy" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Years of experience in current job:</label>
-            <input type="number" id="current_jy" name="current_jy" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="5" required>
-        </div>
-        <div>
-            <label for="current_hy" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Years at current residence:</label>
-            <input type="number" id="current_hy" name="current_hy" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="5" required>
-        </div>
-        <div>
-            <label for="income" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Income:</label>
-            <input type="number" id="income" name="income" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Annual Income(Rs)" required>
-        </div>
-        <div>
-            <label for="age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age:</label>
-            <input type="number" id="age" name="age" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Above 21" required>
+        <!-- Information Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Instant Results</h3>
+                </div>
+                <p class="text-gray-600">Get your loan eligibility prediction instantly using our advanced machine learning model.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Accurate Predictions</h3>
+                </div>
+                <p class="text-gray-600">Our model is trained on extensive data to provide accurate loan eligibility assessments.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900">Secure & Private</h3>
+                </div>
+                <p class="text-gray-600">Your data is secure and private. We don't store sensitive information.</p>
+            </div>
         </div>
     </div>
-    <button type="submit"  class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Predict</button>
-<center>
-</form>
+</div>
 
+<script>
+// Form validation
+document.getElementById('predictionForm').addEventListener('submit', function(e) {
+         const requiredFields = ['marital', 'age', 'income', 'profession', 'house_O', 'car_O', 'city', 'state', 'current_jy', 'current_hy'];
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        const element = document.getElementById(field);
+        if (!element.value.trim()) {
+            element.classList.add('border-red-500');
+            isValid = false;
+        } else {
+            element.classList.remove('border-red-500');
+        }
+    });
+    
+    if (!isValid) {
+        e.preventDefault();
+        alert('Please fill in all required fields.');
+    }
+});
 
-
+// Remove red border when user starts typing
+document.querySelectorAll('input, select').forEach(element => {
+    element.addEventListener('input', function() {
+        this.classList.remove('border-red-500');
+    });
+});
+</script>
 {% endblock %}

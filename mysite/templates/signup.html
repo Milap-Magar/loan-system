@@ -1,59 +1,169 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
-    <title>LoanPrediction</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sign Up - LoanPredict</title>
+    <style>
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .card-shadow {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+
+      .hover-scale {
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .hover-scale:hover {
+        transform: scale(1.02);
+      }
+    </style>
   </head>
-    <body>
-        <br>
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            <div>
-                <center><img src="{% static 'sign.jpg' %}" alt="My image" width="500" height="600"><center>
-               
+
+  <body
+    class="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen"
+  >
+    <!-- Header -->
+    <header
+      class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50"
+    >
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                ></path>
+              </svg>
             </div>
-            
-            <div>
-            
-                <br>
-                
-
-                    <p class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white">Sign Up<br>
-                    It’s quick and easy.</p>
-                    <br>
-                <form method="post">
-                    {% csrf_token %} 
-                    <div class="mb-6">
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name</label>
-                        {{form.username}} 
-                    </div>
-                    <div class="mb-6">
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
-                        {{form.email}}
-                    </div> 
-                    <div class="mb-6">
-                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                        {{form.password1}} 
-    
-                    </div> 
-                    <div class="mb-6">
-                        <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                        {{form.password2}} 
-                    </div> 
-                    <button type="submit" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Register</button>
-                </form>
-                        
-
-                    
-                {{form.errors}}
-                Already have an account?<a href="{% url 'landing' %}"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Login</a>
-
-            
-
-            </div>
+            <h1 class="text-2xl font-bold text-gray-900">LoanPredict</h1>
+          </div>
         </div>
-    </body>
-  </html>  
- 
+      </div>
+    </header>
+
+    <!-- Signup Section -->
+    <section class="py-20">
+      <div class="container mx-auto px-4">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto"
+        >
+          <!-- Left Image -->
+          <div class="flex justify-center">
+            <img
+              src="{% static 'signup2.jpg' %}"
+              alt="Sign Up Illustration"
+              class="rounded-2xl shadow-2xl w-full max-w-lg hover-scale"
+            />
+          </div>
+
+          <!-- Form Card -->
+          <div
+            class="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl card-shadow p-8"
+          >
+            <div class="text-center mb-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-2">
+                Create Your Account
+              </h2>
+              <p class="text-gray-600">
+                Join LoanPredict to access powerful prediction tools.
+              </p>
+            </div>
+
+            <form method="POST" class="space-y-6">
+              {% csrf_token %}
+
+              <div class="space-y-2">
+                <label
+                  for="username"
+                  class="block text-sm font-medium text-gray-700"
+                  >Username</label
+                >
+                {{ form.username }}
+              </div>
+
+              <div class="space-y-2">
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700"
+                  >Email</label
+                >
+                {{ form.email }}
+              </div>
+
+              <div class="space-y-2">
+                <label
+                  for="password1"
+                  class="block text-sm font-medium text-gray-700"
+                  >Password</label
+                >
+                {{ form.password1 }}
+              </div>
+
+              <div class="space-y-2">
+                <label
+                  for="password2"
+                  class="block text-sm font-medium text-gray-700"
+                  >Confirm Password</label
+                >
+                {{ form.password2 }}
+              </div>
+
+              <button
+                type="submit"
+                class="w-full h-12 gradient-bg text-white font-medium rounded-lg hover-scale focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-200"
+              >
+                Register
+              </button>
+
+              <!-- Error Messages -->
+              {% if form.errors %}
+              <div class="p-4 border border-red-200 bg-red-50 rounded-lg">
+                {% for field in form %} {% for error in field.errors %}
+                <p class="text-red-700 text-sm">{{ error }}</p>
+                {% endfor %} {% endfor %}
+              </div>
+              {% endif %}
+
+              <!-- Redirect -->
+              <div class="text-center pt-4">
+                <p class="text-sm text-gray-600">
+                  Already have an account?
+                  <a
+                    href="{% url 'landing' %}"
+                    class="font-medium text-blue-600 hover:text-blue-700 hover:underline ml-1"
+                  >
+                    Login
+                  </a>
+                </p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+  </body>
+</html>

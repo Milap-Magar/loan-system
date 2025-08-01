@@ -1,29 +1,169 @@
 {% extends "master.html" %}
 
-{% block title %}{{Home}}{% endblock %}
+{% block title %}Prediction Result{% endblock %}
 
 {% block content %}
-        <br><br><br><br><br>
-      
-        
-        {% if result == 'eligible' %}
-        <figure class="max-w-screen-md mx-auto text-center">
-          <blockquote>
-              <p class="text-2xl italic font-medium text-gray-900 dark:text-white">Congratulations! Based on the analysis performed by the loan prediction model, you are <u>eligible</u> for a loan. You can proceed with the application process by contacting the lending institution or financial organization of your choice.</p>
-          </blockquote>
-        </figure>
-          
-        {% else %}
-        <figure class="max-w-screen-md mx-auto text-center">
-          <blockquote>
-              <p class="text-2xl italic font-medium text-gray-900 dark:text-white">We are sorry to inform you that based on the analysis performed by the loan prediction model, you are<u> not eligible</u> for a loan. This decision may be based on various factors, such as  income, or other relevant factors. We recommend improving your financial situation  before reapplying for a loan in the future.</p>
-          </blockquote>
-        </figure>
-        {% endif%}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Result Card -->
+        <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
+                <h1 class="text-2xl font-bold text-white text-center">
+                    Loan Eligibility Prediction Result
+                </h1>
+                <p class="text-blue-100 text-center mt-1">Generated on {{ timestamp }}</p>
+            </div>
 
+            <!-- Result Content -->
+            <div class="p-8">
+                <!-- Main Result -->
+                <div class="text-center mb-8">
+                    {% if result == 'eligible' %}
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-4">
+                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-green-600 mb-2">🎉 CONGRATULATIONS!</h2>
+                        <p class="text-xl text-gray-700">You are <span class="font-bold text-green-600">ELIGIBLE</span> for a loan</p>
+                        <p class="text-gray-600 mt-2">You can proceed with the application process by contacting the lending institution.</p>
+                    {% else %}
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-red-100 rounded-full mb-4">
+                            <svg class="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-red-600 mb-2">❌ SORRY!</h2>
+                        <p class="text-xl text-gray-700">You are <span class="font-bold text-red-600">NOT ELIGIBLE</span> for a loan</p>
+                        <p class="text-gray-600 mt-2">We recommend improving your financial situation before reapplying.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Prediction Details -->
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <!-- Details Card -->
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Prediction Details</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Marital Status:</span>
+                                <span class="font-medium">{{ prediction_data.marital|title }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">House Ownership:</span>
+                                <span class="font-medium">{{ prediction_data.house_O|title }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Car Ownership:</span>
+                                <span class="font-medium">{{ prediction_data.car_O|title }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Profession:</span>
+                                <span class="font-medium">{{ prediction_data.profession|title }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">City:</span>
+                                <span class="font-medium">{{ prediction_data.city|title }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">State:</span>
+                                <span class="font-medium">{{ prediction_data.state|title }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Job Experience:</span>
+                                <span class="font-medium">{{ prediction_data.current_jy }} years</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Residence Years:</span>
+                                <span class="font-medium">{{ prediction_data.current_hy }} years</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Annual Income:</span>
+                                <span class="font-medium">₹{{ prediction_data.income|floatformat:0 }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Age:</span>
+                                <span class="font-medium">{{ prediction_data.age }} years</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QR Code Card -->
+                    <div class="bg-gray-50 rounded-lg p-6 text-center">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">QR Code</h3>
+                        <p class="text-sm text-gray-600 mb-4">Scan this QR code to view your result on mobile</p>
+                        <div class="flex justify-center">
+                            <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code" class="w-48 h-48 border-2 border-gray-300 rounded-lg">
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Prediction ID: {{ prediction_id|truncatechars:12 }}</p>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{% url 'download_pdf' prediction_id %}" 
+                       class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Download PDF Report
+                    </a>
+                    
+                    <a href="{% url 'download_excel' prediction_id %}" 
+                       class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Download Excel Report
+                    </a>
+                    
+                    <a href="{% url 'predict' %}" 
+                       class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        New Prediction
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center text-sm">
+                        <a href="{% url 'home' %}" class="text-blue-600 hover:text-blue-800 transition-colors">
+                            ← Back to Home
+                        </a>
+                        <a href="{% url 'dashboard' %}" class="text-blue-600 hover:text-blue-800 transition-colors">
+                            View Dashboard
+                        </a>
+                        <a href="{% url 'prediction_history' %}" class="text-blue-600 hover:text-blue-800 transition-colors">
+                            View History
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success/Error Messages -->
+{% if messages %}
+<div class="fixed top-4 right-4 z-50">
+    {% for message in messages %}
+    <div class="bg-{{ message.tags }}-100 border border-{{ message.tags }}-400 text-{{ message.tags }}-700 px-4 py-3 rounded relative mb-2" role="alert">
+        <span class="block sm:inline">{{ message }}</span>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+// Auto-hide messages after 5 seconds
+setTimeout(function() {
+    const messages = document.querySelectorAll('[role="alert"]');
+    messages.forEach(function(message) {
+        message.style.display = 'none';
+    });
+}, 5000);
+</script>
 {% endblock %}
-
-      
-
-
-        

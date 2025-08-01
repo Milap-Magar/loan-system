@@ -1,56 +1,232 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
-    <title>loanPrediction</title>
-  </head>
-    <body>
-        <br>
-        <center><p class="text-6xl font-extrabold italic dark:text-white ">Loan Eligibility Prediction</p></center>
-        <br><br><br>
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            
-            <div>
-                <br>
-               <center><img src="{% static 'landing.jpg' %}" alt="My image" width="500" height="600"><center>
-            </div>  
-            
-            <div>
-        
-                <br><br>
-
-                <form method="POST">
-                    {% csrf_token %} 
-                    
-                        <div  class="mb-6">
-                            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">User Name</label>
-                            <input type="text" id="first_name" name="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
-                        </div>
-                        <div  class="mb-6">
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                            <input type="password" id="password" name="pass" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
-                        </div> 
-                        
-                    
-        
-                    
-                    <button type="submit"  class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">LOGIN</button><br>
-                   
-                </form>
-                {% for message in messages %}
-                <p class="text-purple-600"> {{message}}</p>
-                {% endfor %}
-                Don't have an account?<a href="{% url 'signup' %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Sign up</a>
-        
-                
-            </div> 
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>LoanPredict - Loan Eligibility Prediction</title>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .hover-scale {
+            transition: transform 0.2s ease-in-out;
+        }
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen">
+    
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-900">LoanPredict</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#features" class="text-gray-600 hover:text-blue-600 transition-colors">Features</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+                </nav>
+            </div>
         </div>
-    </body>
-</head> 
+    </header>
 
-        
+    <!-- Hero Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <!-- Main Title -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
+                    Loan Eligibility
+                    <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                        Prediction
+                    </span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Advanced AI-powered system to predict loan eligibility with high accuracy. Make informed decisions faster and reduce risk in your lending process.
+                </p>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+                
+                <!-- Left Side - Image and Features -->
+                <div class="space-y-8">
+                    <div class="relative">
+                        <img src="{% static 'landing1.jpg' %}" alt="Loan Prediction System" 
+                             class="rounded-2xl shadow-2xl w-full hover-scale">
+                        <div class="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-lg border">
+                            <div class="flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="text-sm font-medium">99.2% Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Feature Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-white rounded-lg p-4 shadow-md border hover-scale">
+                            <svg class="w-8 h-8 text-blue-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                            </svg>
+                            <h3 class="font-semibold text-gray-900">High Accuracy</h3>
+                            <p class="text-sm text-gray-600">Advanced ML algorithms</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-md border hover-scale">
+                            <svg class="w-8 h-8 text-green-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                            <h3 class="font-semibold text-gray-900">Secure</h3>
+                            <p class="text-sm text-gray-600">Bank-grade security</p>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 shadow-md border hover-scale">
+                            <svg class="w-8 h-8 text-purple-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                            </svg>
+                            <h3 class="font-semibold text-gray-900">User Friendly</h3>
+                            <p class="text-sm text-gray-600">Intuitive interface</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Login Form -->
+                <div class="flex justify-center lg:justify-end">
+                    <div class="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl card-shadow border-0 p-8">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-bold text-gray-900 mb-2">Welcome Back</h2>
+                            <p class="text-gray-600">Sign in to access your loan prediction dashboard</p>
+                        </div>
+
+                        <form method="POST" class="space-y-6">
+                            {% csrf_token %}
+                            
+                            <div class="space-y-2">
+                                <label for="first_name" class="block text-sm font-medium text-gray-700">
+                                    Username
+                                </label>
+                                <input type="text" id="first_name" name="username"
+                                    class="w-full h-12 px-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                    placeholder="Enter your username" required>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label for="password" class="block text-sm font-medium text-gray-700">
+                                    Password
+                                </label>
+                                <input type="password" id="password" name="pass"
+                                    class="w-full h-12 px-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                                    placeholder="Enter your password" required>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full h-12 gradient-bg text-white font-medium rounded-lg hover-scale focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-200">
+                                Sign In
+                            </button>
+
+                            <!-- Django Messages -->
+                            {% for message in messages %}
+                            <div class="p-4 border border-purple-200 bg-purple-50 rounded-lg">
+                                <p class="text-purple-700 text-sm">{{message}}</p>
+                            </div>
+                            {% endfor %}
+
+                            <div class="text-center pt-4">
+                                <p class="text-sm text-gray-600">
+                                    Don't have an account?
+                                    <a href="{% url 'signup' %}"
+                                        class="font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors ml-1">
+                                        Sign up
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Our System?</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Built with cutting-edge technology to provide the most accurate loan predictions
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="text-center p-6 hover-scale">
+                    <div class="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Advanced Analytics</h3>
+                    <p class="text-gray-600">
+                        Machine learning algorithms analyze multiple data points for accurate predictions
+                    </p>
+                </div>
+
+                <div class="text-center p-6 hover-scale">
+                    <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Secure & Compliant</h3>
+                    <p class="text-gray-600">Enterprise-grade security with full compliance to financial regulations</p>
+                </div>
+
+                <div class="text-center p-6 hover-scale">
+                    <div class="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Easy Integration</h3>
+                    <p class="text-gray-600">Simple API integration with your existing loan management systems</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold">LoanPredict</span>
+                </div>
+                <p class="text-gray-400 mb-4">Empowering financial institutions with AI-driven loan predictions</p>
+                <p class="text-sm text-gray-500">© 2025 LoanPredict. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</body>
+</html>
